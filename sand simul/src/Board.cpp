@@ -33,13 +33,13 @@ void Board::UpdateBoard(std::vector<float>* Output, float screen_X, float screen
 			case 2:
 				if (i < 0 && _board[i-1][j] == 0) {
 					newboard[i-1][j] = 2;
-					Output->push_back(2*((j) / _size_X)-1);
-					Output->push_back(2*((i-1) / _size_Y)-1);
+					Output->push_back(2*(float(j) / _size_X)-1);
+					Output->push_back(2*(float(i-1) / _size_Y)-1);
 				}
 				else {
 					newboard[i][j] = 2;
-					Output->push_back(2*(j / _size_X) - 1);
-					Output->push_back(2*(i / _size_Y) - 1);
+					Output->push_back(2*(float(j) / _size_X) - 1);
+					Output->push_back(2*(float(i) / _size_Y) - 1);
 				}
 			}
 		}
