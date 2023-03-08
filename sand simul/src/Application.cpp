@@ -8,7 +8,7 @@ Application::Application(int screen_X, int screen_Y)
     _screen_X = screen_X;
     _screen_Y = screen_Y;
     /* Initialize the library */
-    _ASSERT(glfwInit());
+    glfwInit();
     /* Create a windowed mode window and its OpenGL context */
     _window = glfwCreateWindow(screen_X, screen_Y, "Hello World", NULL, NULL);
     _ASSERT(_window);
@@ -32,7 +32,7 @@ void Application::GameLoop() {
     while (!glfwWindowShouldClose(_window)) {
         GLclearerrors();
         currenttime = glfwGetTime();
-        if (currenttime - prevtime >= 1) {
+        if (currenttime - prevtime >= 2) {
             board.UpdateBoard(&pos, _screen_X, _screen_Y);
             prevtime = currenttime;
         }
@@ -49,11 +49,10 @@ void Application::GameLoop() {
 
 void Application::Draw(void* pos,unsigned int size) {
 
-    glPointSize(100);
+    glPointSize(1920/100);
     
     _VertexBuffers[0].AddData(pos, size);
 
     glClear(GL_COLOR_BUFFER_BIT);
-    glDrawArrays(GL_POINTS, 0, 1);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glDrawArrays(GL_POINTS, 0, size/2);
 }

@@ -10,37 +10,36 @@ Board::Board(int size_x, int size_y) {
 			_board[i][j] = 0;
 		}
 	}
-	_board[3][5] = 2;
+	_board[0][50] = 2;
 }
 
 void Board::UpdateBoard(std::vector<float>* Output, float screen_X, float screen_Y) {
 	int** newboard = new int* [_size_Y];
 	for (int i = 0; i < _size_Y; ++i) {
 		newboard[i] = new int[_size_X];
-		for (int j = 0; j < _size_X; ++j) {
-			newboard[i][j] = 0;
-		}
 	}
-
 
 	for (int i = 0; i < _size_Y; ++i) {
 		for (int j = 0; j < _size_X; ++j) {
 			switch (_board[i][j]) {
 			case 0:
+				newboard[i][j] = 0;
 				break;
 			case 1:
 				newboard[i][j] = 1;
+				break;
 			case 2:
-				if (i < 0 && _board[i-1][j] == 0) {
-					newboard[i-1][j] = 2;
-					Output->push_back(2*((j) / _size_X)-1);
-					Output->push_back(2*((i-1) / _size_Y)-1);
+				if (i+1<_size_Y && _board[i+1][j] == 0) {
+					newboard[i+1][j] = 2;
+					Output->push_back(2*(static_cast<float>(j) / _size_X)-1);
+					Output->push_back(2*(static_cast<float>(i) / _size_Y)-1);
 				}
 				else {
 					newboard[i][j] = 2;
-					Output->push_back(2*(j / _size_X) - 1);
-					Output->push_back(2*(i / _size_Y) - 1);
+					Output->push_back(2*(static_cast<float>(j) / _size_X) - 1);
+					Output->push_back(2*(static_cast<float>(i) / _size_Y) - 1);
 				}
+				break;
 			}
 		}
 	}
@@ -50,7 +49,7 @@ void Board::UpdateBoard(std::vector<float>* Output, float screen_X, float screen
 			_board[i][j] = newboard[i][j];
 		}
 	}
-	PrintBoard();
+	//PrintBoard();
 }
 
 void Board::PrintBoard() {
