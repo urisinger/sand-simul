@@ -1,4 +1,4 @@
-#include "indexbuffer.h"
+#include "headers/indexbuffer.h"
 
 IndexBuffer::IndexBuffer()
 {

@@ -7,7 +7,7 @@
 #include "vertexbuffer.h"
 #include "IndexBuffer.h"
 #include "shader.h"
-#include "Board.h"
+#include "Entities.h"
 static void GLclearerrors()
 {
     while (glGetError());
@@ -34,7 +34,7 @@ private:
     GLFWwindow* _window;
     int _screen_X;
     int _screen_Y;
-    Board board;
+    Entities Enteties;
     std::vector<Shader> _Shaders;
     std::vector <VertexBuffer> _VertexBuffers;
     std::vector <IndexBuffer> _IndexBuffers;

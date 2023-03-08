@@ -1,8 +1,7 @@
-#include "Application.h"
+#include "headers/Application.h"
 
 
 Application::Application(int screen_X, int screen_Y)
-    :board(300,300* screen_Y/screen_X)
 {
 
     _screen_X = screen_X;
@@ -28,27 +27,17 @@ Application::Application(int screen_X, int screen_Y)
 void Application::GameLoop() {
     std::vector <float> pos;
     double prevtime=0;
-    double currenttime=0;
+    double currenttime=0;   
     while (!glfwWindowShouldClose(_window)) {
         GLclearerrors();
         currenttime = glfwGetTime();
 
 
-        Draw(&pos,0,pos.size()/2);
-
-        if (currenttime - prevtime >= 1 / 30.0) {
-            pos.clear();
-            board.UpdateBoard(&pos);
-            for (int i = 0; i < pos.size(); ++i) {
-                std::cout << pos[i];
-                std::cout << std::endl;
-            }
-            prevtime = currenttime;
-        }
-
+        Draw(pos.data(), 0, pos.size() / 2);
+        prevtime = currenttime;
         /* Swap front and back buffers */
         glfwSwapBuffers(_window);
-
+        
         /* Poll for and process events */
 
         glfwPollEvents();
@@ -67,7 +56,7 @@ void Application::Draw(void* pos, int index, int count) {
     _VertexBuffers[index].AddData(pos,count*2);
 
 
-    glPointSize(_screen_X / 300);
+    glPointSize(_screen_X / 300.0);
     glDrawArrays(GL_POINTS, 0, count);
     _VertexBuffers[index].UnBind();
 }

@@ -156,7 +156,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Board.cpp" />
+    <ClCompile Include="src\RigidBody.cpp" />
+    <ClCompile Include="src\Entities.cpp" />
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\IndexBuffer.cpp" />
     <ClCompile Include="src\Main.cpp" />
@@ -168,11 +169,12 @@
     <None Include="res\shader\vertex.shader" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Board.h" />
-    <ClInclude Include="src\Application.h" />
-    <ClInclude Include="src\IndexBuffer.h" />
-    <ClInclude Include="src\shader.h" />
-    <ClInclude Include="src\vertexbuffer.h" />
+    <ClInclude Include="src\headers\RigidBody.h" />
+    <ClInclude Include="src\headers\Entities.h" />
+    <ClInclude Include="src\headers\Application.h" />
+    <ClInclude Include="src\headers\IndexBuffer.h" />
+    <ClInclude Include="src\headers\shader.h" />
+    <ClInclude Include="src\headers\vertexbuffer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

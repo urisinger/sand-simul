@@ -6,10 +6,10 @@
 #include <fstream>
 
 
-#include "vertexbuffer.h"
-#include "IndexBuffer.h"
+#include "headers/vertexbuffer.h"
+#include "headers/IndexBuffer.h"
 
-#include "Application.h"
+#include "headers/Application.h"
 
 
 int main(void)
