@@ -2,7 +2,7 @@
 
 
 Application::Application(int screen_X, int screen_Y)
-    :board(100,100)
+    :board(10,10)
 {
 
     _screen_X = screen_X;
@@ -32,9 +32,17 @@ void Application::GameLoop() {
     while (!glfwWindowShouldClose(_window)) {
         GLclearerrors();
         currenttime = glfwGetTime();
-        if (currenttime - prevtime >= 2) {
+        if (currenttime - prevtime >= 1) {
+            pos.clear();
             board.UpdateBoard(&pos, _screen_X, _screen_Y);
             prevtime = currenttime;
+
+
+        }
+
+        for (int i = 0; i < pos.size(); ++i) {
+            std::cout << pos[i];
+            std::cout << std::endl;
         }
         Draw(&pos,pos.size());
         /* Swap front and back buffers */
@@ -49,10 +57,13 @@ void Application::GameLoop() {
 
 void Application::Draw(void* pos,unsigned int size) {
 
-    glPointSize(1920/100);
-    
-    _VertexBuffers[0].AddData(pos, size);
+
 
     glClear(GL_COLOR_BUFFER_BIT);
-    glDrawArrays(GL_POINTS, 0, size/2);
+
+    glPointSize(1920 / 100);
+
+    _VertexBuffers[0].AddData(pos, size);
+
+    glDrawArrays(GL_POINTS, 0, size);
 }
