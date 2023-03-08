@@ -32,7 +32,12 @@ void Application::GameLoop() {
     while (!glfwWindowShouldClose(_window)) {
         GLclearerrors();
         currenttime = glfwGetTime();
-        if (currenttime - prevtime >= 1/30.0) {
+
+
+
+        Draw(0,pos.size()/2);
+
+        if (currenttime - prevtime >= 1 / 30.0) {
             pos.clear();
             board.UpdateBoard(&pos);
             glPointSize(1920 / 10);
@@ -44,9 +49,6 @@ void Application::GameLoop() {
             prevtime = currenttime;
         }
 
-
-
-        Draw(0,pos.size()/2);
         /* Swap front and back buffers */
         glfwSwapBuffers(_window);
 
