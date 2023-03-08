@@ -34,14 +34,11 @@ void Application::GameLoop() {
         currenttime = glfwGetTime();
 
 
-
-        Draw(0,pos.size()/2);
+        Draw(&pos,0,pos.size()/2);
 
         if (currenttime - prevtime >= 1 / 30.0) {
             pos.clear();
             board.UpdateBoard(&pos);
-            glPointSize(1920 / 10);
-            _VertexBuffers[0].AddData(&pos, pos.size());
             for (int i = 0; i < pos.size(); ++i) {
                 std::cout << pos[i];
                 std::cout << std::endl;
@@ -59,7 +56,7 @@ void Application::GameLoop() {
     }
 }
 
-void Application::Draw(int index,int count) {
+void Application::Draw(void* pos, int index, int count) {
 
 
 
@@ -67,7 +64,10 @@ void Application::Draw(int index,int count) {
 
     _VertexBuffers[index].Bind();
 
+    _VertexBuffers[index].AddData(&pos,count*2);
+
+
     glPointSize(_screen_X / 300);
     glDrawArrays(GL_POINTS, 0, count);
-    _VertexBuffers[0].UnBind();
+    _VertexBuffers[index].UnBind();
 }

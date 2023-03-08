@@ -40,6 +40,6 @@ private:
     std::vector <IndexBuffer> _IndexBuffers;
 
 
-    void Draw(int index, int count);
+    void Draw(void* pos,int index, int count);
 };
 
