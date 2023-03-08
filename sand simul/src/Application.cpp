@@ -64,7 +64,7 @@ void Application::Draw(void* pos, int index, int count) {
 
     _VertexBuffers[index].Bind();
 
-    _VertexBuffers[index].AddData(&pos,count*2);
+    _VertexBuffers[index].AddData(pos,count*2);
 
 
     glPointSize(_screen_X / 300);
