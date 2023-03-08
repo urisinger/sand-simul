@@ -10,7 +10,7 @@ public:
 	Board(int size_x,int size_y);
 	~Board() {};
 	void PrintBoard();
-	void UpdateBoard(std::vector<float>* Output, float screen_X, float screen_Y);
+	void UpdateBoard(std::vector<float>* Output);
 private:
 	int** _board;
 	int _size_X;

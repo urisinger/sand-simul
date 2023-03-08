@@ -2,7 +2,7 @@
 
 
 Application::Application(int screen_X, int screen_Y)
-    :board(10,10)
+    :board(300,300* screen_Y/screen_X)
 {
 
     _screen_X = screen_X;
@@ -32,19 +32,21 @@ void Application::GameLoop() {
     while (!glfwWindowShouldClose(_window)) {
         GLclearerrors();
         currenttime = glfwGetTime();
-        if (currenttime - prevtime >= 1) {
+        if (currenttime - prevtime >= 1/30.0) {
             pos.clear();
-            board.UpdateBoard(&pos, _screen_X, _screen_Y);
+            board.UpdateBoard(&pos);
+            glPointSize(1920 / 10);
+            _VertexBuffers[0].AddData(&pos, pos.size());
+            for (int i = 0; i < pos.size(); ++i) {
+                std::cout << pos[i];
+                std::cout << std::endl;
+            }
             prevtime = currenttime;
-
-
         }
 
-        for (int i = 0; i < pos.size(); ++i) {
-            std::cout << pos[i];
-            std::cout << std::endl;
-        }
-        Draw(&pos,pos.size());
+
+
+        Draw(0,pos.size()/2);
         /* Swap front and back buffers */
         glfwSwapBuffers(_window);
 
@@ -55,15 +57,15 @@ void Application::GameLoop() {
     }
 }
 
-void Application::Draw(void* pos,unsigned int size) {
+void Application::Draw(int index,int count) {
 
 
 
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glPointSize(1920 / 100);
+    _VertexBuffers[index].Bind();
 
-    _VertexBuffers[0].AddData(pos, size);
-
-    glDrawArrays(GL_POINTS, 0, size);
+    glPointSize(_screen_X / 300);
+    glDrawArrays(GL_POINTS, 0, count);
+    _VertexBuffers[0].UnBind();
 }
