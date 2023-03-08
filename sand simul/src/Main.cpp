@@ -16,5 +16,5 @@ int main(void)
 {
     Application App(1000,1000);
     App.GameLoop();
-    return -1;
+    return 0;
 }
